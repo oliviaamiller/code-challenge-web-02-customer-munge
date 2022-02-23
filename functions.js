@@ -59,7 +59,17 @@ Output:
 */
 
 export function getTotalOfEachGender(customers) {
-    return true;
+    const genderHashMap = {};
+
+    for(let customer of customers) {
+        if(genderHashMap[customer.gender]) {
+            genderHashMap[customer.gender]++;
+        } else {
+            genderHashMap[customer.gender] = 1;
+        }
+    }
+
+    return genderHashMap;
 }
 
 /* 
