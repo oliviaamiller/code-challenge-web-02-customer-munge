@@ -4,7 +4,9 @@ Output:
 */
 
 export function greetUsers(customers) {
-    return true;
+    return customers
+    
+        .map(customer => `Hello ${customer.first_name} ${customer.last_name}!`);
 }
 
 /* 
@@ -27,7 +29,10 @@ Output:
 */
 
 export function addAllAges(customers) {
-    return true;
+   
+    const sum = customers.reduce((accumulator, currentCustomer) => 
+        accumulator + currentCustomer.age, 0);
+    return sum;
 }
 
 /* 
@@ -36,7 +41,11 @@ Output:
 */
 
 export function getAverageCoolFactor(customers) {
-    return true;
+    const sum = customers.reduce((accumulator, currentCustomer) => 
+        accumulator + currentCustomer.cool_factor, 0);
+    
+    const average = sum / customers.length;
+    return average;
 }
 
 /* 
@@ -50,7 +59,17 @@ Output:
 */
 
 export function getTotalOfEachGender(customers) {
-    return true;
+    const genderHashMap = {};
+
+    for(let customer of customers) {
+        if(genderHashMap[customer.gender]) {
+            genderHashMap[customer.gender]++;
+        } else {
+            genderHashMap[customer.gender] = 1;
+        }
+    }
+
+    return genderHashMap;
 }
 
 /* 
@@ -64,7 +83,19 @@ Output:
 */
 
 export function getGenderBreakdownOfFordOwners(customers) {
-    return true;
+    
+    const fords = customers.filter(customer => customer.car_make === 'Ford');
+
+    const fordHashMap = {};
+
+    for(let ford of fords) {
+        if(fordHashMap[ford.gender]) {
+            fordHashMap[ford.gender]++;
+        } else {
+            fordHashMap[ford.gender] = 1;
+        }
+    }
+    return fordHashMap;
 }
 
 //////////////////////////////////////////////////////////
@@ -88,8 +119,25 @@ Output:
 }
 */
 
+function getCarMakes(customer) {
+    const cars = customer.car_make;
+
+    return cars;
+}
+
 export function getGenderBreakdownOfEachCar(customers) {
-    return true;
+    const array = customers.reduce((acc, curr) => {
+        const carMakes = getCarMakes(curr);
+
+        if(acc[carMakes]) {
+            acc[carMakes].push(curr.gender);
+        } else {
+            acc[carMakes] = [curr.gender];
+        }
+        return acc;
+    }, {});
+    
+    return array;
 }
 
 /* 
