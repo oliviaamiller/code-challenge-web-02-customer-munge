@@ -119,8 +119,24 @@ Output:
 }
 */
 
+function getCarMakes(customer) {
+    const cars = customer.car_make;
+
+    return cars;
+}
+
 export function getGenderBreakdownOfEachCar(customers) {
-    return true;
+    const array = customers.reduce((acc, curr) => {
+        const carMakes = getCarMakes(curr);
+
+        if(acc[carMakes]) {
+            acc[carMakes].push(curr.gender);
+        } else {
+            acc[carMakes] = [curr.gender];
+        }
+        return acc;
+    }, {});
+    return array;
 }
 
 /* 
