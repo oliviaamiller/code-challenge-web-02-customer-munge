@@ -136,6 +136,7 @@ export function getGenderBreakdownOfEachCar(customers) {
         }
         return acc;
     }, {});
+    
     return array;
 }
 
